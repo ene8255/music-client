@@ -1,0 +1,26 @@
+.mainSection {
+    h2 {
+        margin-bottom: 16px;
+    }
+    ul {
+        display: flex;
+        margin-bottom: 32px;
+        li {
+            background-color: #191919;
+            padding: 16px;
+            margin-right: 16px;
+            border-radius: 5px;
+            width: 212px;
+            img {
+                width: 180px;
+                height: 180px;
+            }
+            h3 {
+                padding: 8px 0;
+            }
+            &:hover {
+                background-color: #393939;
+            }
+        }
+    }
+}
