@@ -2,12 +2,16 @@
 li { list-style: none; }
 a { text-decoration: none; color: inherit; }
 table { border-collapse: collapse; }
+input, textarea, select, button { outline: none; border: none; }
+button { cursor: pointer; }
 
 .App {
     color: #fff;
     font-size: 14px;
+    line-height: 1.5;
 }
 
+/* header */
 header {
     position: fixed;
     left: 0;
@@ -31,7 +35,9 @@ header svg {
     font-size: 25px;
     margin-right: 16px;
 }
+/* header // */
 
+/* nav */
 #nav {
     height: 70px;
     width: 80%;
@@ -60,15 +66,80 @@ header svg {
 #nav svg {
     font-size: 20px;
 }
+/* nav // */
 
+/* main */
 main {
     width: 80%;
-    min-height: 100%;
-    position: absolute;
-    top: 70px;
-    right: 0;
+    float: right;
+    min-height: 100vh;
+    margin-top: 70px;
     z-index: -1;
-    /* background-color: #2a2a2a; */
     background: linear-gradient(to bottom, #2a2a2a, #121212);
     padding: 32px;
 }
+/* main // */
+
+/* footer */
+footer {
+    height: 400px;
+    width: 80%;
+    float: right;
+    background-color: #111;
+    font-size: 14px;
+    padding: 3%;
+    color: gray;
+}
+#footerMenu-top {
+    display: flex;
+    justify-content: space-between;
+}
+#footerMenu-top > ul {
+    display: flex;
+}
+
+#menuLists > li {
+    margin-right: 100px;
+}
+.submenu {
+    font-size: 18px;
+    margin-top: 16px;
+    color: #fff;
+}
+.submenu > li {
+    margin-bottom: 16px;
+}
+.submenu > li:hover {
+    color: skyblue;
+}
+
+#socialIcons {
+    font-size: 28px;
+    color: #fff;
+}
+#socialIcons li {
+    width: 60px;
+    height: 60px;
+    background-color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 16px;
+}
+#socialIcons li:hover svg {
+    color: skyblue;
+}
+
+#footerMenu-bottom {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+#footerMenu-bottom > ul {
+    display: flex;
+}
+#footerMenu-bottom > ul li {
+    margin-right: 24px;
+}
+/* footer // */

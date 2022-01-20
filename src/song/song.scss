@@ -1,0 +1,32 @@
+#songMain {
+    text-align: center;
+    section {
+        margin: 40px 0;
+    }
+}
+
+#albumImg {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#songDesc {
+    font-size: 16px;
+    h2 {
+        font-size: 40px;
+        margin-bottom: 8px;
+    }
+    h3 {
+        font-size: 24px;
+    }
+    ul {
+        width: 80%;
+        margin: 16px auto;
+        li {
+            line-height: 40px;
+            // border-bottom: 1px dotted #393939;
+        }
+    }
+}

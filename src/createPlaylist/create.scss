@@ -1,0 +1,54 @@
+#createMain {
+    h2 {
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 40px;
+    }
+    table {
+        font-size: 16px;
+        margin: 0 auto;
+        tr {
+            border-top: 1px solid #fff;
+        }
+        th, td {
+            padding: 16px;
+        }
+        input {
+            width: 400px;
+            padding: 8px;
+            line-height: 20px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        textarea {
+            width: 400px;
+            height: 200px;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        select {
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 8px;
+        }
+        #btnTd {
+            text-align: center;
+            padding-top: 30px;
+            button {
+                padding: 8px 16px;
+                border-radius: 5px;
+                margin-right: 40px;
+                background-color: transparent;
+                color: #fff;
+                border: 1px solid #fff;
+                font-weight: bold;
+                font-size: 14px;
+                &:hover {
+                    background-color: #fff;
+                    color: #111;
+                }
+            }
+        }
+    }
+}

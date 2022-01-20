@@ -27,7 +27,7 @@ export default function Header(){
             </ul>
             <ul>
                 <li>
-                    <Link to="/">
+                    <Link to="/create">
                         <MdAddBox/>
                         플레이리스트 생성
                     </Link>
