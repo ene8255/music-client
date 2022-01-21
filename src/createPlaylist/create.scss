@@ -1,7 +1,7 @@
-#createMain {
+#createMain, #addMain {
     h2 {
         text-align: center;
-        font-size: 40px;
+        font-size: 32px;
         margin-bottom: 40px;
     }
     table {
@@ -11,18 +11,18 @@
             border-top: 1px solid #fff;
         }
         th, td {
-            padding: 16px;
+            padding: 16px 40px;
         }
         input {
-            width: 400px;
+            width: 300px;
             padding: 8px;
             line-height: 20px;
             border-radius: 5px;
             font-size: 16px;
         }
         textarea {
-            width: 400px;
-            height: 200px;
+            width: 300px;
+            height: 100px;
             padding: 8px;
             font-size: 16px;
             border-radius: 5px;
@@ -31,8 +31,26 @@
             font-size: 16px;
             border-radius: 5px;
             padding: 8px;
+            margin-right: 16px;
         }
-        #btnTd {
+        .uploadTd {
+            .imgPreview {
+                margin-top: 16px;
+                width: 200px;
+                height: 200px;
+                background-color: #000000;
+                background-image: linear-gradient(147deg, #000000 0%, #434343 84%);
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                img {
+                    width: 200px;
+                }
+            }
+        }
+        .btnTd {
             text-align: center;
             padding-top: 30px;
             button {
@@ -50,5 +68,15 @@
                 }
             }
         }
+    }
+}
+
+#addMain {
+    #TagDesc {
+        font-weight: normal;
+        font-size: 14px;
+    }
+    strong {
+        margin-right: 16px;
     }
 }

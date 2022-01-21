@@ -1,8 +1,28 @@
+@font-face {
+  font-family: "S-Core Dream";
+  font-weight: 200;
+  src: url("fonts/SCDream2.otf") format("otf");
+}
+@font-face {
+  font-family: "S-Core Dream";
+  font-weight: 300;
+  src: url("fonts/SCDream3.otf") format("otf");
+}@font-face {
+  font-family: "S-Core Dream";
+  font-weight: 400;
+  src: url("fonts/SCDream4.otf") format("otf");
+}@font-face {
+  font-family: "S-Core Dream";
+  font-weight: 500;
+  src: url("fonts/SCDream5.otf") format("otf");
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: "S-Core Dream";
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -20,6 +20,7 @@ header {
     height: 100vh;
     background-color: #111;
     padding: 3%;
+    z-index: 2;
 }
 header ul {
     margin-top: 40px;
@@ -45,6 +46,7 @@ header svg {
     position: fixed;
     top: 0;
     right: 0;
+    z-index: 2;
 }
 #nav ul {
     margin-left: 32px;
@@ -82,7 +84,7 @@ main {
 
 /* footer */
 footer {
-    height: 400px;
+    min-height: 400px;
     width: 80%;
     float: right;
     background-color: #111;

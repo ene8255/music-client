@@ -9,6 +9,7 @@ const AlbumBlurBg = styled.div`
     width: 300px;
     height: 300px;
     background-image: url("../imgs/outoftime.png");
+    background-color: red;
     filter: blur(30px);
     z-index: -1;
 `;

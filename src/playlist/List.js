@@ -14,7 +14,7 @@ const BlurBg = styled.div`
     background-image: url("../imgs/winter.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
-    filter: blur(90px);
+    filter: blur(80px);
 `;
 
 function List() {
@@ -48,7 +48,7 @@ function List() {
                     <tr>
                         <td>1</td>
                         <td className='songTitle'>
-                            <img src='../imgs/outoftime.png'/>
+                            <img src='../imgs/outoftime.png' alt='앨범 이미지'/>
                             <Link to="/song/1">Out of Time</Link>
                         </td>
                         <td>TheWeeknd</td>
