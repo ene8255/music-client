@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../createPlaylist/create.scss';
-import useAsync from '../hooks/useAsync';
-import { API_URL } from '../config/constants';
+import '../CreatePlaylist/create.scss';
+import useAsync from '../../hooks/useAsync';
+import { API_URL } from '../../config/constants';
 import axios from 'axios';
 
 // db에서 카테고리 data 가져오기
@@ -33,7 +33,7 @@ function AddPage() {
     const { loading, error, data: categories } = state;
     if(loading) return <main><h3>로딩중...</h3></main>;
     if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
-    if(!categories) return null;
+    if(!categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
     // 가져온 data 가공하기
     const groups = new Array;

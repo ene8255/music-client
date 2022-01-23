@@ -1,5 +1,6 @@
+import React from 'react';
 
-export default function RecommendPage(){
+function RecommendPage() {
     return (
         <main>
             <h2>랜덤 플레이리스트</h2>
@@ -20,3 +21,5 @@ export default function RecommendPage(){
         </main>
     );
 }
+
+export default RecommendPage;

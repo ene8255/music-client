@@ -2,7 +2,10 @@ import React from 'react';
 import { BiTrash } from "react-icons/bi";
 import './playlist.scss';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
+import { API_URL } from '../../config/constants';
+import useAsync from '../../hooks/useAsync'
 
 const BlurBg = styled.div`
     position: absolute;
@@ -11,24 +14,40 @@ const BlurBg = styled.div`
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: url("../imgs/winter.jpg");
+    background-image: url('${(props) => props.img}');
     background-repeat: no-repeat;
     background-size: 100%;
     filter: blur(80px);
 `;
 
-function List() {
+function PlaylistPage() {
+    const param = useParams();
+    const { id } = param;
+
+    async function getPlaylist() {
+        const response = await axios.get(
+            `${API_URL}/playlist/${id}`
+        )
+        return response.data;
+    }
+
+    const state = useAsync(getPlaylist);
+    const { loading, error, data: playlist } = state;
+    if(loading) return <main><h3>로딩중...</h3></main>;
+    if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
+    if(!playlist) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
+
     return (
         <main>
             <section id='listSection'>
-                <BlurBg />
+                <BlurBg img={playlist[0].p_imgUrl} />
                 <div>
-                    <img src="../imgs/winter.jpg"/>
+                    <img src={playlist[0].p_imgUrl} />
                 </div>
                 <div id='listTitle'>
                     <p>PLAYLIST</p>
-                    <h2>겨울</h2>
-                    <p>겨울 느낌나는 노래</p>
+                    <h2>{playlist[0].p_name}</h2>
+                    <p>{playlist[0].p_desc}</p>
                     <p>--곡, --분</p>
                     <Link to="/add"><button>노래 추가하기</button></Link>
                 </div>
@@ -73,4 +92,4 @@ function List() {
     );
 }
 
-export default List;
+export default PlaylistPage;
