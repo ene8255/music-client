@@ -28,6 +28,11 @@
         li {
             line-height: 40px;
             // border-bottom: 1px dotted #393939;
+            span {
+                display: inline-block;
+                margin-right: 16px;
+                margin-top: 16px;
+            }
         }
     }
 }

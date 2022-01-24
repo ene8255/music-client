@@ -7,6 +7,7 @@ import PlaylistPage from './components/Playlist';
 import SongPage from './components/Song';
 import CreatePage from './components/CreatePlaylist';
 import AddPage from './components/AddSong';
+import EditPlaylistPage from './components/EditPlaylist';
 import Footer from './components/include/Footer';
 import { Routes, Route } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/song/:id" element={<SongPage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/add" element={<AddPage />} />
+        <Route path="/editPlaylist/:id" element={<EditPlaylistPage />} />
         <Route path="/recommend" element={<RecommendPage />} />
       </Routes>
       <Footer />

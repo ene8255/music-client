@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import './song.scss';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { API_URL } from '../../config/constants';
+import useAsync from '../../hooks/useAsync';
 
 const AlbumBlurBg = styled.div`
     position: absolute;
@@ -8,34 +12,55 @@ const AlbumBlurBg = styled.div`
     left: 0;
     width: 300px;
     height: 300px;
-    background-image: url("../imgs/outoftime.png");
+    background-image: url(${props => props.url});
     background-color: red;
-    filter: blur(30px);
+    filter: blur(20px);
     z-index: -1;
 `;
 
 function SongPage() {
+    const param = useParams();
+    const { id } = param;
+
+    async function getSong() {
+        const response = await axios.get(
+            `${API_URL}/song/${id}`
+        )
+        return response.data;
+    }
+    const state = useAsync(getSong);
+    const { loading, error, data: song } = state;
+    if(loading) return <main><h3>로딩중...</h3></main>;
+    if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
+    if(!song) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
+
+    const s_categories = [];
+    s_categories.push(song[0].s_season, song[0].s_mood, song[0].s_situation);
+
     return (
         <main id='songMain'>
             <section>
                 <div id='albumImg'>
-                    <img src='../imgs/outoftime.png'/>
-                    <AlbumBlurBg />
+                    <img src={`${API_URL}/${song[0].s_imgUrl}`}/>
+                    <AlbumBlurBg url={`${API_URL}/${song[0].s_imgUrl}`} />
                 </div>
             </section>
             <section id='songDesc'>
-                <h2>Out of Time</h2>
-                <h3>TheWeeknd</h3>
+                <h2>{song[0].s_name}</h2>
+                <h3>{song[0].s_artist}</h3>
                 <ul>
-                    <li>앨범: Dawn FM(Alternate World)</li>
-                    <li>발매연도: 2022</li>
-                    <li>시간: 3:35</li>
-                    <li><span>#겨울</span> <span>#신남</span></li>
+                    <li>앨범: {song[0].s_album}</li>
+                    <li>발매연도: {song[0].s_year}</li>
+                    <li>시간: {song[0].s_time}</li>
+                    <li>
+                        {s_categories.map((category, index) => 
+                            category ? <span key={index}>#{category}</span> : null
+                        )}
+                    </li>
                 </ul>
             </section>
             <section id='youtube'>
-                <iframe width="854" height="480" src="https://www.youtube-nocookie.com/embed/xBa3YUgQeL4" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen ></iframe>
-                {/* 유튜브 동영상이 음악 동영상이 아닌 다른 동영상 이라면 막을 방법은?*/}
+                <iframe width="854" height="480" src={`https://www.youtube-nocookie.com/embed/${song[0].s_youtubeUrl}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen ></iframe>
             </section>
         </main>
     );

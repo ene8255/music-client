@@ -1,33 +1,27 @@
 import React, { useState } from 'react';
-import './form.scss';
 import { Form, Input, Button, Upload } from "antd";
 import useAsync from '../../hooks/useAsync';
 import { API_URL } from '../../config/constants';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const { TextArea } = Input;
 
-// db에서 카테고리 data 가져오기
-async function getCategories() {
-    const response = await axios.get(
-        `${API_URL}/categories`
-    )
-    return response.data;
-}
-
-function CreatePage() {
+function EditPlaylistPage() {
     const navigate = useNavigate();
+
+    const param = useParams();
+    const { id } = param;
+
+    async function getPlaylist() {
+        const response = await axios.get(
+            `${API_URL}/playlist/${id}`
+        )
+        return response.data;
+    }
 
     // imgUrl 상태 관리
     const [ imgUrl, setImgUrl ] = useState(null);
-    // selectValue 상태 관리
-    const [ selectValue, setSelectValue ] = useState("");
-
-    // select의 value에 변화가 생길때마다 setSelectValue로 업데이트
-    function onChangeSelect(e) {
-        setSelectValue(e.target.value);
-    }
 
     // 이미지 처리함수
     const normFile = (e) => {
@@ -44,30 +38,25 @@ function CreatePage() {
     };
 
     // useAsync로 data 받아오는 상태 관리
-    const state = useAsync(getCategories);
-    const { loading, error, data: categories } = state;
+    const state = useAsync(getPlaylist);
+    const { loading, error, data: playlist } = state;
     if(loading) return <main><h3>로딩중...</h3></main>;
     if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
-    if(!categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
+    if(!playlist) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
-    // 가져온 data 가공하기
-    const sortedCat = new Object();
-    categories[0].map(group => {
-        categories[1].map(category => {
-            if(group.c_group === category.c_group) {
-                let newList = category.lists.split(',');
-                sortedCat[group.c_group] = newList;
-            }
-        })
-    })
+    // 체크박스의 checked 속성이 true이면 원래 imgUrl 가져오기
+    function onChangeCk(e) {
+        const checked = e.target.checked;
+        checked? setImgUrl(playlist[0].p_imgUrl) : setImgUrl(null);
+    }
 
     function onSubmit(values) {
-        axios.post(`${API_URL}/playlists`, {
+        axios.put(`${API_URL}/playlist/${id}`, {
             p_name: values.p_name,
             p_imgUrl: imgUrl,
             p_desc: values.p_desc,
-            p_group: values.p_group,
-            p_category: values.p_category
+            p_group: playlist[0].p_group,
+            p_category: playlist[0].p_category
         }).then((result) => {
             console.log(result);
             navigate(-1);
@@ -79,9 +68,14 @@ function CreatePage() {
 
     return (
         <main className="formStyle">
-            <h2>플레이리스트 생성하기</h2>
+            <h2>플레이리스트 수정하기</h2>
             <div className="formDiv">
-                <Form name="createForm" onFinish={onSubmit}>
+                <Form name="createForm" onFinish={onSubmit}
+                    initialValues={{
+                        ["p_name"]: playlist[0].p_name,
+                        ["p_desc"]: playlist[0].p_desc,
+                    }}
+                >
                     <hr />
                     <Form.Item name="p_name" className="formItem"
                         label={<h3 className="form-label">플레이리스트 이름</h3>} 
@@ -102,6 +96,10 @@ function CreatePage() {
                                 <Button>사진 업로드</Button>
                             </Upload>
                         </Form.Item>
+                        <div id="originalImg">
+                            <input type="checkbox" onChange={onChangeCk} /> 
+                            <span>원래 사진 사용하기</span>
+                        </div>
                         <div className="imgPreview">
                             {imgUrl ? 
                             (<img src={`${API_URL}/${imgUrl}`} alt="앨범 사진"/>) : 
@@ -117,26 +115,16 @@ function CreatePage() {
                     </Form.Item>
                     <hr />
                     <Form.Item className="formItem tags" 
-                        label={<h3 className="form-label">태그 선택</h3>} 
-                        rules={[{ required: true, message: "모두 선택해 주세요" }]}
+                        label={<h3 className="form-label">태그 선택</h3>}
                     >
                         <Form.Item name="p_group" noStyle>
-                            <select value={selectValue} onChange={onChangeSelect}>
-                                <option value="">선택하기</option>
-                                {Object.keys(sortedCat).map(group => (
-                                    <option key={group} value={group}>{group}</option>
-                                ))}
+                            <select disabled>
+                                <option value={playlist[0].p_group}>{playlist[0].p_group}</option>
                             </select>
                         </Form.Item>
                         <Form.Item name="p_category" noStyle>
-                            <select>
-                                <option value="">선택하기</option>
-                                {selectValue ? 
-                                (sortedCat[selectValue].map(cat => (
-                                    <option key={cat} value={cat}>{cat}</option>
-                                ))) : 
-                                null
-                                }
+                            <select disabled>
+                                <option value={playlist[0].p_category}>{playlist[0].p_category}</option>
                             </select>
                         </Form.Item>
                     </Form.Item>
@@ -151,4 +139,4 @@ function CreatePage() {
     );
 }
 
-export default CreatePage;
+export default EditPlaylistPage;

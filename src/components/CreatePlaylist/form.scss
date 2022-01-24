@@ -1,4 +1,4 @@
-#createMain, #addMain {
+.formStyle {
     h2 {
         text-align: center;
         font-size: 32px;
@@ -41,14 +41,14 @@
         }
     }
     input {
-        width: 300px;
+        width: 400px;
         padding: 8px;
         line-height: 20px;
         border-radius: 5px;
         font-size: 16px;
     }
     textarea {
-        width: 300px;
+        width: 400px;
         height: 100px;
         padding: 8px;
         font-size: 16px;
@@ -79,7 +79,16 @@
 }
 
 .tags {
-    display: flex;
+    .tagSelect {
+        display: flex;
+        align-items: center;
+        &:not(:last-child) {
+            margin-bottom: 16px;
+        }
+        h4 {
+            margin-right: 24px;
+        }
+    }
 }
 
 #addMain {
@@ -89,5 +98,13 @@
     }
     strong {
         margin-right: 16px;
+    }
+}
+
+#originalImg {
+    display: inline-block;
+    margin-top: 16px;
+    input {
+        width: 30px;
     }
 }

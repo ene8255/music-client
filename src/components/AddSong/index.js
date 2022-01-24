@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import '../CreatePlaylist/create.scss';
+import '../CreatePlaylist/form.scss';
+import { Form, Input, Button, Upload } from "antd";
 import useAsync from '../../hooks/useAsync';
 import { API_URL } from '../../config/constants';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 // db에서 카테고리 data 가져오기
 async function getCategories() {
@@ -13,20 +15,27 @@ async function getCategories() {
 }
 
 function AddPage() {
+    const navigate = useNavigate();
+
     // imgUrl 상태 관리
     const [ imgUrl, setImgUrl ] = useState(null);
+    // youtubeUrl 상태 관리
+    const [ youtubeUrl, setYoutubeUrl ] = useState(null);
 
-    // 이미지 파일 미리보기
-    function onLoadFile(e) {
-        const files = e.target.files;
-        const reader = new FileReader();
-        // readAsDataURL로 파일을 읽어오면 result에 결과를 담음
-        reader.readAsDataURL(files[0]);
-        // result의 값을 imgUrl값으로 넣어줌
-        reader.onload = () => {
-            setImgUrl(reader.result);
+    // 이미지 처리함수
+    const normFile = (e) => {
+        // 파일이 업로드 중일때
+        if(e.file.status === 'uploading'){
+            return;
         }
-    }
+        // 파일이 업로드 완료되었을때
+        if(e.file.status === 'done'){
+            const response = e.file.response;
+            const imageUrl = response.imageUrl;
+            setImgUrl(imageUrl);
+            console.log(imageUrl);
+        }
+    };
 
     // useAsync로 data 받아오는 상태 관리
     const state = useAsync(getCategories);
@@ -47,81 +56,123 @@ function AddPage() {
             }
         })
     })
-    const firtstCat = groups.shift();
+    const groups_name = ["s_season", "s_mood", "s_situation"];
+
+    // youtubeUrl 데이터 가공 + 상태 업데이트
+    function onChangeYUrl(e) {
+        const urlSplit = e.target.value.split('v=');
+        setYoutubeUrl(urlSplit[1]);
+    }
+
+    function onSubmit(values) {
+        axios.post(`${API_URL}/songs`, {
+            s_name: values.s_name,
+            s_artist: values.s_artist,
+            s_album: values.s_album,
+            s_year: values.s_year,
+            s_time: values.s_time,
+            s_imgUrl: imgUrl,
+            s_season: values.s_season,
+            s_mood: values.s_mood,
+            s_situation: values.s_situation,
+            s_youtubeUrl: youtubeUrl
+        }).then((result) => {
+            console.log(result);
+            navigate(-1);
+        })
+        .catch((error) => {
+            console.error(error);
+        })
+    }
 
     return (
-        <main id="addMain">
+        <main className="formStyle" id="addMain">
             <h2>노래 추가하기</h2>
-            <form>
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>*노래명</th>
-                            <td><input type="text" name="s_name" /></td>
-                        </tr>
-                        <tr>
-                            <th>*가수명</th>
-                            <td><input type="text" name="s_artist" /></td>
-                        </tr>
-                        <tr>
-                            <th>*앨범명</th>
-                            <td><input type="text" name="s_album" /></td>
-                        </tr>
-                        <tr>
-                            <th>*발매연도</th>
-                            <td><input type="number" name="s_year" min="1900" max="2022" defaultValue="2022" /></td>
-                        </tr>
-                        <tr>
-                            <th>*시간</th>
-                            <td><input type="text" name="s_time" placeholder="'분:초' 형태로 입력해 주세요." /></td>
-                        </tr>
-                        <tr>
-                            <th>*앨범 사진</th>
-                            <td className="uploadTd">
-                                <input type="file" accept="image/*" name="s_imgUrl" onChange={onLoadFile} />
-                                <div className="imgPreview">
-                                    {imgUrl ? 
-                                    (<img src={`${imgUrl}`} alt="앨범 사진"/>) : 
-                                    (<p>이미지 미리보기</p>)}
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th rowSpan={3}>
-                                태그 선택 <br />
-                                <span id="TagDesc">(여러개 선택 가능)</span>
-                            </th>
-                            <td>
-                                <strong>{firtstCat}</strong>
-                                <select name={firtstCat}>
-                                    <option value="">선택하기</option>
-                                    {sortedCat[firtstCat].map(cat => (
-                                    <option key={cat} value={cat}>{cat}</option>))}
-                                </select>
-                            </td>
-                        </tr>
-                    {groups.map(group => (
-                        <tr key={group}>
-                            <td>
-                                <strong>{group}</strong>
-                                <select name={group}>
-                                    <option value="">선택하기</option>
+            <div className="formDiv">
+                <Form name="createForm" onFinish={onSubmit}>
+                    <hr />
+                    <Form.Item name="s_name" className="formItem"
+                        label={<h3 className="form-label">노래명</h3>} 
+                        rules={[{ required: true, message: "노래명을 입력해 주세요" }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <hr />
+                    <Form.Item name="s_artist" className="formItem"
+                        label={<h3 className="form-label">가수명</h3>} 
+                        rules={[{ required: true, message: "가수명을 입력해 주세요" }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <hr />
+                    <Form.Item name="s_album" className="formItem"
+                        label={<h3 className="form-label">앨범명</h3>} 
+                        rules={[{ required: true, message: "앨범명을 입력해 주세요" }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <hr />
+                    <Form.Item name="s_year" className="formItem"
+                        label={<h3 className="form-label">발매연도</h3>} 
+                        rules={[{ required: true, message: "발매연도를 숫자만 입력해 주세요" }]}
+                    >
+                        <Input placeholder='(예시) 2022'/>
+                    </Form.Item>
+                    <hr />
+                    <Form.Item name="s_time" className="formItem"
+                        label={<h3 className="form-label">재생시간</h3>} 
+                        rules={[{ required: true, message: "'분:초' 형태로 입력해 주세요." }]}
+                    >
+                        <Input placeholder='(예시) 3:20'/>
+                    </Form.Item>
+                    <hr />
+                    <Form.Item className="formItem" 
+                        label={<h3 className="form-label">앨범 사진</h3>}
+                    >
+                        <Form.Item name="upload" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+                            <Upload name="image"
+                                action={`${API_URL}/image`}
+                                listType="picture"
+                                showUploadList = {false}
+                            >
+                                <Button>사진 업로드</Button>
+                            </Upload>
+                        </Form.Item>
+                        <div className="imgPreview">
+                            {imgUrl ? 
+                            (<img src={`${API_URL}/${imgUrl}`} alt="앨범 사진"/>) : 
+                            (<p>이미지 미리보기</p>)}
+                        </div>
+                    </Form.Item>
+                    <hr />
+                    <Form.Item className="formItem tags" 
+                        label={<h3 className="form-label">태그 선택</h3>}
+                    >
+                        {groups.map((group, index) => (
+                            <Form.Item className="tagSelect" key={index} name={groups_name[index]} label={<h4>{group}</h4>}>
+                            <select>
+                                <option value="">선택하기</option>
                                 {sortedCat[group].map(cat => (
                                     <option key={cat} value={cat}>{cat}</option>
                                 ))}
-                                </select>
-                            </td>
-                        </tr>
-                    ))}
-                        <tr>
-                            <td colSpan={2} className="btnTd">
-                                <button type='submit'>추가하기</button>
-                                <button type='reset'>취소</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </form>
+                            </select>
+                            </Form.Item> 
+                        ))}
+                    </Form.Item>
+                    <hr />
+                    <Form.Item name="s_youtubeUrl" className="formItem"
+                        label={<h3 className="form-label">YouTube 동영상 주소</h3>} 
+                        rules={[{ required: true, message: "(예시)https://www.youtube.com/watch?v=7Qp5vcuMIlk" }]}
+                    >
+                        <Input value={youtubeUrl} onChange={onChangeYUrl}/>
+                    </Form.Item>
+                    <hr />
+                    <Form.Item className="formItem btnArea">
+                        <Button htmlType="submit">추가하기</Button>
+                        <Button htmlType="reset">취소</Button>
+                    </Form.Item>
+                </Form>
+            </div>
         </main>
     );
 }

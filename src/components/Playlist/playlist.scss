@@ -11,11 +11,13 @@
         box-shadow: 0px 0px 30px #3e403f;
     }
     button {
-        margin-top: 16px;
-        padding: 8px 16px;
+        margin-top: 24px;
+        margin-right: 16px;
+        padding: 5px 10px;
         background-color: #fff;
         border-radius: 5px;
         border: 1px solid #fff;
+        font-weight: bold;
         &:hover {
             background-color: transparent;
             color: #fff;
@@ -27,7 +29,7 @@
     margin-left: 3%;
     h2 {
         font-size: 64px;
-        margin: 16px 0;
+        margin: 8px 0;
         text-shadow: 0px 0px 40px #6c6d70;
     }
 }

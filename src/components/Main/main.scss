@@ -1,4 +1,6 @@
 .mainSection {
+    margin-top: 24px;
+    margin-left: 32px;
     h2 {
         margin-bottom: 16px;
     }
@@ -16,8 +18,9 @@
                 width: 180px;
                 height: 180px;
                 background-color: #111;
+                overflow: hidden;
                 img {
-                    width: 100%;
+                    width: 150%;
                     height: 100%;
                 }
             }

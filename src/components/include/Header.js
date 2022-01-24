@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MdList, MdRecommend, MdSearch, MdAddBox } from "react-icons/md";
+import { MdList, MdRecommend, MdSearch, MdAddBox, MdLibraryMusic } from "react-icons/md";
 
 export default function Header(){
     return (
@@ -30,6 +30,12 @@ export default function Header(){
                     <Link to="/create">
                         <MdAddBox/>
                         플레이리스트 생성
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/add">
+                        <MdLibraryMusic/>
+                        노래 추가하기
                     </Link>
                 </li>
             </ul>

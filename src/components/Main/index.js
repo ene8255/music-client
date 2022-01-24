@@ -24,16 +24,17 @@ function MainPage() {
     const groups = playlists.map(playlist => 
         playlist.p_group
     );
-    groups.filter((item, index) => groups.indexOf(item) === index);
+    const filteredGroups = groups.filter((item, index) => groups.indexOf(item) === index);
+    console.log(filteredGroups);
 
     return (
         <main>
-            {groups.map(group => (
+            {filteredGroups.map(group => (
                 <section className='mainSection' key={group}>
                     <h2>{group}</h2>
                     <ul>
                         {data.map(item => 
-                            group === item.p_group ? <MainList key={item.p_id} data={item} /> : null   
+                            group === item.p_group ? <MainList key={item.p_id} data={item} /> : null
                         )}
                     </ul>
                 </section>
