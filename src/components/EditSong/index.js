@@ -4,7 +4,7 @@ import { Form, Input, Button, Upload } from "antd";
 import useAsync from '../../hooks/useAsync';
 import { API_URL } from '../../config/constants';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // db에서 카테고리 data 가져오기
 async function getCategories() {
@@ -14,8 +14,18 @@ async function getCategories() {
     return response.data;
 }
 
-function AddPage() {
+function EditSongPage() {
     const navigate = useNavigate();
+
+    const param = useParams();
+    const { id } = param;
+
+    async function getSong() {
+        const response = await axios.get(
+            `${API_URL}/song/${id}`
+        )
+        return response.data;
+    }
 
     // imgUrl 상태 관리
     const [ imgUrl, setImgUrl ] = useState(null);
@@ -37,11 +47,13 @@ function AddPage() {
     };
 
     // useAsync로 data 받아오는 상태 관리
-    const state = useAsync(getCategories);
-    const { loading, error, data: categories } = state;
-    if(loading) return <main><h3>로딩중...</h3></main>;
-    if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
-    if(!categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
+    const stateCat = useAsync(getCategories);
+    const stateSong = useAsync(getSong);
+    const { loading: lSong, error: eSong, data: song } = stateSong;
+    const { loading: lCat, error: eCat, data: categories } = stateCat;
+    if(lSong || lCat) return <main><h3>로딩중...</h3></main>;
+    if(eSong || eCat) return <main><h3>오류가 발생했습니다.</h3></main>;
+    if(!song || !categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
     // 가져온 data 가공하기
     const groups = new Array;
@@ -57,6 +69,15 @@ function AddPage() {
     })
     const groups_name = ["s_season", "s_mood", "s_situation"];
 
+    // 체크박스의 checked 속성이 true이면 원래 imgUrl 가져오기
+    function onChangeCk(e) {
+        const checked = e.target.checked;
+        checked? setImgUrl(song[0].s_imgUrl) : setImgUrl(null);
+    }
+
+    // youtubeUrl 초기 상태 지정
+    // setYoutubeUrl(song[0].s_youtubeUrl);
+
     // youtubeUrl 데이터 가공 + 상태 업데이트
     function onChangeYUrl(e) {
         const urlSplit = e.target.value.split('v=');
@@ -64,7 +85,7 @@ function AddPage() {
     }
 
     function onSubmit(values) {
-        axios.post(`${API_URL}/songs`, {
+        axios.put(`${API_URL}/song/${id}`, {
             s_name: values.s_name,
             s_artist: values.s_artist,
             s_album: values.s_album,
@@ -85,10 +106,22 @@ function AddPage() {
     }
 
     return (
-        <main className="formStyle" id="addMain">
-            <h2>노래 추가하기</h2>
+        <main className="formStyle">
+            <h2>노래 정보 수정하기</h2>
             <div className="formDiv">
-                <Form name="createForm" onFinish={onSubmit}>
+                <Form name="createForm" onFinish={onSubmit}
+                    initialValues={{
+                        ["s_name"]: song[0].s_name,
+                        ["s_artist"]: song[0].s_artist,
+                        ["s_album"]: song[0].s_album,
+                        ["s_year"]: song[0].s_year,
+                        ["s_time"]: song[0].s_time,
+                        ["s_youtubeUrl"]: `https://www.youtube.com/watch?v=${song[0].s_youtubeUrl}`,
+                        ["s_season"]: song[0].s_season || "",
+                        ["s_mood"]: song[0].s_mood || "",
+                        ["s_situation"]: song[0].s_situation || ""
+                    }}
+                >
                     <hr />
                     <Form.Item name="s_name" className="formItem"
                         label={<h3 className="form-label">노래명</h3>} 
@@ -137,6 +170,10 @@ function AddPage() {
                                 <Button>사진 업로드</Button>
                             </Upload>
                         </Form.Item>
+                        <div className="originalImg">
+                            <input type="checkbox" onChange={onChangeCk} /> 
+                            <span>원래 사진 사용하기</span>
+                        </div>
                         <div className="imgPreview">
                             {imgUrl ? 
                             (<img src={`${API_URL}/${imgUrl}`} alt="앨범 사진"/>) : 
@@ -147,10 +184,9 @@ function AddPage() {
                     <Form.Item className="formItem tags" 
                         label={<h3 className="form-label">태그 선택</h3>}
                     >
-                        <span>(중복선택 가능)</span>
                         {groups.map((group, index) => (
                             <Form.Item className="tagSelect" key={index} name={groups_name[index]} label={<h4>{group}</h4>}>
-                            <select>
+                            <select defaultValue="">
                                 <option value="">선택하기</option>
                                 {sortedCat[group].map(cat => (
                                     <option key={cat} value={cat}>{cat}</option>
@@ -164,11 +200,11 @@ function AddPage() {
                         label={<h3 className="form-label">YouTube 동영상 주소</h3>} 
                         rules={[{ required: true, message: "(예시)https://www.youtube.com/watch?v=7Qp5vcuMIlk" }]}
                     >
-                        <Input value={youtubeUrl} onChange={onChangeYUrl}/>
+                        <Input value={youtubeUrl ? youtubeUrl : setYoutubeUrl(song[0].s_youtubeUrl)} onChange={onChangeYUrl}/>
                     </Form.Item>
                     <hr />
                     <Form.Item className="formItem btnArea">
-                        <Button htmlType="submit">추가하기</Button>
+                        <Button htmlType="submit">수정하기</Button>
                         <Button htmlType="reset">취소</Button>
                     </Form.Item>
                 </Form>
@@ -177,4 +213,4 @@ function AddPage() {
     );
 }
 
-export default AddPage;
+export default EditSongPage;

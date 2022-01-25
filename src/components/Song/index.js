@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import './song.scss';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../config/constants';
 import useAsync from '../../hooks/useAsync';
@@ -19,6 +19,8 @@ const AlbumBlurBg = styled.div`
 `;
 
 function SongPage() {
+    const navigate = useNavigate();
+
     const param = useParams();
     const { id } = param;
 
@@ -36,6 +38,10 @@ function SongPage() {
 
     const s_categories = [];
     s_categories.push(song[0].s_season, song[0].s_mood, song[0].s_situation);
+
+    function onBackward() {
+        navigate(-1);
+    }
 
     return (
         <main id='songMain'>
@@ -61,6 +67,10 @@ function SongPage() {
             </section>
             <section id='youtube'>
                 <iframe width="854" height="480" src={`https://www.youtube-nocookie.com/embed/${song[0].s_youtubeUrl}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen ></iframe>
+            </section>
+            <section id='btn'>
+                <Link to={`/editSong/${id}`}><button>수정하기</button></Link>
+                <button onClick={onBackward}>리스트 보기</button>
             </section>
         </main>
     );

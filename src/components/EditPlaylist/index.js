@@ -96,7 +96,7 @@ function EditPlaylistPage() {
                                 <Button>사진 업로드</Button>
                             </Upload>
                         </Form.Item>
-                        <div id="originalImg">
+                        <div className="originalImg">
                             <input type="checkbox" onChange={onChangeCk} /> 
                             <span>원래 사진 사용하기</span>
                         </div>

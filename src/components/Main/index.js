@@ -31,7 +31,7 @@ function MainPage() {
         <main>
             {filteredGroups.map(group => (
                 <section className='mainSection' key={group}>
-                    <h2>{group}</h2>
+                    <h2>{group}에 맞는 플레이리스트</h2>
                     <ul>
                         {data.map(item => 
                             group === item.p_group ? <MainList key={item.p_id} data={item} /> : null

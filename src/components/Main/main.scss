@@ -6,26 +6,32 @@
     }
     ul {
         display: flex;
-        margin-bottom: 32px;
+        margin-bottom: 40px;
         li {
             background-color: #191919;
             padding: 16px;
-            margin-right: 16px;
+            // padding: 2%;
+            margin-right: 24px;
+            // margin-right: 2%;
             border-radius: 5px;
             width: 212px;
+            // width: 20%;
             transition: 0.5s;
             div {
+                // width: 100%;
+                // height: 70%;
                 width: 180px;
                 height: 180px;
                 background-color: #111;
                 overflow: hidden;
                 img {
-                    width: 150%;
+                    width: 100%;
                     height: 100%;
                 }
             }
             h3 {
                 padding: 8px 0;
+                font-size: 18px;
             }
             &:hover {
                 background-color: #393939;

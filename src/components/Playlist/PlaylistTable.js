@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { BiTrash } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -20,6 +20,18 @@ function PlaylistTable({ p_category }) {
     if(loading) return <div>로딩중...</div>;
     if(error) return <div>오류가 발생했습니다.</div>;
     if(!songs) return <div>데이터를 불러오지 못했습니다.</div>;
+
+    // 특정 노래 삭제하기
+    function onDelete(id) {
+        axios.delete(`${API_URL}/song/${id}`)
+        .then((result) => {
+            console.log("삭제되었습니다.");
+            window.location.reload();
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 
     return (
         <table id='playlistTable'>
@@ -44,7 +56,7 @@ function PlaylistTable({ p_category }) {
                         <td>{song.s_artist}</td>
                         <td>{song.s_year}</td>
                         <td>{song.s_time}</td>
-                        <td><BiTrash/></td>
+                        <td><BiTrash onClick={() => window.confirm("노래를 삭제하시겠습니까?") ? onDelete(song.s_id) : null} /></td>
                     </tr>
                 ))}
             </tbody>
