@@ -21,6 +21,7 @@ header {
     background-color: #111;
     padding: 3%;
     z-index: 2;
+    font-size: 18px;
 }
 header ul {
     margin-top: 40px;
@@ -33,7 +34,7 @@ header ul li a {
     align-items: center;
 }
 header svg {
-    font-size: 25px;
+    font-size: 30px;
     margin-right: 16px;
 }
 /* header // */

@@ -44,7 +44,7 @@ function AddPage() {
     if(!categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
     // 가져온 data 가공하기
-    const groups = new Array;
+    const groups = new Array();
     const sortedCat = new Object();
     categories[0].map(group => {
         groups.push(group.c_group);
@@ -164,7 +164,7 @@ function AddPage() {
                         label={<h3 className="form-label">YouTube 동영상 주소</h3>} 
                         rules={[{ required: true, message: "(예시)https://www.youtube.com/watch?v=7Qp5vcuMIlk" }]}
                     >
-                        <Input value={youtubeUrl} onChange={onChangeYUrl}/>
+                        <Input type="url" value={youtubeUrl} onChange={onChangeYUrl}/>
                     </Form.Item>
                     <hr />
                     <Form.Item className="formItem btnArea">

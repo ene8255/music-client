@@ -19,7 +19,7 @@ export default function Header(){
                     </Link>
                 </li>
                 <li>
-                    <Link to="/">
+                    <Link to="/search">
                         <MdSearch/>
                         검색
                     </Link>

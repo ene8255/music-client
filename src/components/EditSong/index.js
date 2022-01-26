@@ -56,7 +56,7 @@ function EditSongPage() {
     if(!song || !categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
     // 가져온 data 가공하기
-    const groups = new Array;
+    const groups = new Array();
     const sortedCat = new Object();
     categories[0].map(group => {
         groups.push(group.c_group);
@@ -111,15 +111,15 @@ function EditSongPage() {
             <div className="formDiv">
                 <Form name="createForm" onFinish={onSubmit}
                     initialValues={{
-                        ["s_name"]: song[0].s_name,
-                        ["s_artist"]: song[0].s_artist,
-                        ["s_album"]: song[0].s_album,
-                        ["s_year"]: song[0].s_year,
-                        ["s_time"]: song[0].s_time,
-                        ["s_youtubeUrl"]: `https://www.youtube.com/watch?v=${song[0].s_youtubeUrl}`,
-                        ["s_season"]: song[0].s_season || "",
-                        ["s_mood"]: song[0].s_mood || "",
-                        ["s_situation"]: song[0].s_situation || ""
+                        s_name: song[0].s_name,
+                        s_artist: song[0].s_artist,
+                        s_album: song[0].s_album,
+                        s_year: song[0].s_year,
+                        s_time: song[0].s_time,
+                        s_youtubeUrl: `https://www.youtube.com/watch?v=${song[0].s_youtubeUrl}`,
+                        s_season: song[0].s_season || "",
+                        s_mood: song[0].s_mood || "",
+                        s_situation: song[0].s_situation || ""
                     }}
                 >
                     <hr />
@@ -200,7 +200,7 @@ function EditSongPage() {
                         label={<h3 className="form-label">YouTube 동영상 주소</h3>} 
                         rules={[{ required: true, message: "(예시)https://www.youtube.com/watch?v=7Qp5vcuMIlk" }]}
                     >
-                        <Input value={youtubeUrl ? youtubeUrl : setYoutubeUrl(song[0].s_youtubeUrl)} onChange={onChangeYUrl}/>
+                        <Input type="url" value={youtubeUrl ? youtubeUrl : setYoutubeUrl(song[0].s_youtubeUrl)} onChange={onChangeYUrl}/>
                     </Form.Item>
                     <hr />
                     <Form.Item className="formItem btnArea">

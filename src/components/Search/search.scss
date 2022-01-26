@@ -1,0 +1,71 @@
+#inputSection {
+    margin-top: 32px;
+    >form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 24px 0;
+        input {
+            width: 400px;
+            line-height: 25px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-right: 16px;
+            font-size: 20px;
+            &::placeholder {
+                font-size: 18px;
+            }
+        }
+        button {
+            background-color: transparent;
+            color: #fff;
+            svg {
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+#resultSection {
+    margin-top: 80px;
+    table {
+        width: 70%;
+        margin: 0 auto;
+        text-align: left;
+        thead {
+            th {
+                font-size: 16px;
+                padding: 8px;
+                border-bottom: 1px solid #fff;
+                width: 50%;
+            }
+        }
+        tbody {
+            tr {
+                transition: 0.5s;
+                td {
+                    padding: 8px;
+                }
+                &:hover {
+                    border-radius: 5px;
+                    box-shadow: 0 0 0 1px #393939;
+                    background-color: #393939;
+                }
+            }
+        }
+        .imgTd {
+            width: 80px;
+            img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        .s_name {
+            font-size: 18px;
+            text-decoration: underline;
+        }
+        .s_artist {
+            color: gray;
+        }
+    }
+}

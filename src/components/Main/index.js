@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './main.scss';
 import MainList from './MainList';
 import axios from 'axios';
@@ -25,7 +25,6 @@ function MainPage() {
         playlist.p_group
     );
     const filteredGroups = groups.filter((item, index) => groups.indexOf(item) === index);
-    console.log(filteredGroups);
 
     return (
         <main>

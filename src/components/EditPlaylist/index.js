@@ -72,8 +72,8 @@ function EditPlaylistPage() {
             <div className="formDiv">
                 <Form name="createForm" onFinish={onSubmit}
                     initialValues={{
-                        ["p_name"]: playlist[0].p_name,
-                        ["p_desc"]: playlist[0].p_desc,
+                        p_name: playlist[0].p_name,
+                        p_desc: playlist[0].p_desc,
                     }}
                 >
                     <hr />
