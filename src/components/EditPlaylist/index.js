@@ -51,19 +51,23 @@ function EditPlaylistPage() {
     }
 
     function onSubmit(values) {
-        axios.put(`${API_URL}/playlist/${id}`, {
-            p_name: values.p_name,
-            p_imgUrl: imgUrl,
-            p_desc: values.p_desc,
-            p_group: playlist[0].p_group,
-            p_category: playlist[0].p_category
-        }).then((result) => {
-            console.log(result);
-            navigate(-1);
-        })
-        .catch((error) => {
-            console.error(error);
-        })
+        if(!imgUrl) {
+            alert("사진 업로드를 해주세요!");
+        }else {
+            axios.put(`${API_URL}/playlist/${id}`, {
+                p_name: values.p_name,
+                p_imgUrl: imgUrl,
+                p_desc: values.p_desc,
+                p_group: playlist[0].p_group,
+                p_category: playlist[0].p_category
+            }).then((result) => {
+                console.log(result);
+                navigate(-1);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+        }
     }
 
     return (
@@ -89,6 +93,7 @@ function EditPlaylistPage() {
                     >
                         <Form.Item name="upload" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
                             <Upload name="image"
+                                accept="image/*"
                                 action={`${API_URL}/image`}
                                 listType="picture"
                                 showUploadList = {false}
@@ -130,8 +135,8 @@ function EditPlaylistPage() {
                     </Form.Item>
                     <hr />
                     <Form.Item className="formItem btnArea">
-                        <Button htmlType="submit">생성하기</Button>
-                        <Button htmlType="reset">취소</Button>
+                        <Button htmlType="submit">수정하기</Button>
+                        <Button htmlType="reset">원래대로</Button>
                     </Form.Item>
                 </Form>
             </div>

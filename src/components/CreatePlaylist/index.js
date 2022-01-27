@@ -62,19 +62,23 @@ function CreatePage() {
     })
 
     function onSubmit(values) {
-        axios.post(`${API_URL}/playlists`, {
-            p_name: values.p_name,
-            p_imgUrl: imgUrl,
-            p_desc: values.p_desc,
-            p_group: values.p_group,
-            p_category: values.p_category
-        }).then((result) => {
-            console.log(result);
-            navigate(-1);
-        })
-        .catch((error) => {
-            console.error(error);
-        })
+        if(!imgUrl) {
+            alert("사진 업로드를 해주세요!");
+        }else {
+            axios.post(`${API_URL}/playlists`, {
+                p_name: values.p_name,
+                p_imgUrl: imgUrl,
+                p_desc: values.p_desc,
+                p_group: values.p_group,
+                p_category: values.p_category
+            }).then((result) => {
+                console.log(result);
+                navigate(-1);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+        }
     }
 
     return (
@@ -95,6 +99,7 @@ function CreatePage() {
                     >
                         <Form.Item name="upload" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
                             <Upload name="image"
+                                accept="image/*"
                                 action={`${API_URL}/image`}
                                 listType="picture"
                                 showUploadList = {false}
@@ -117,18 +122,21 @@ function CreatePage() {
                     </Form.Item>
                     <hr />
                     <Form.Item className="formItem tags" 
-                        label={<h3 className="form-label">태그 선택</h3>} 
-                        rules={[{ required: true, message: "모두 선택해 주세요" }]}
+                        label={<h3 className="form-label">태그 선택</h3>}
                     >
-                        <Form.Item name="p_group" noStyle>
+                        <Form.Item name="p_group" noStyle
+                            rules={[{ required: true, message: "태그를 선택해 주세요" }]}
+                        >
                             <select value={selectValue} onChange={onChangeSelect}>
                                 <option value="">선택하기</option>
-                                {Object.keys(sortedCat).map(group => (
-                                    <option key={group} value={group}>{group}</option>
+                                {Object.keys(sortedCat).map((group, index) => (
+                                    <option key={index} value={group}>{group}</option>
                                 ))}
                             </select>
                         </Form.Item>
-                        <Form.Item name="p_category" noStyle>
+                        <Form.Item name="p_category" noStyle
+                            rules={[{ required: true, message: "태그를 선택해 주세요" }]}
+                        >
                             <select>
                                 <option value="">선택하기</option>
                                 {selectValue ? 
@@ -143,7 +151,7 @@ function CreatePage() {
                     <hr />
                     <Form.Item className="formItem btnArea">
                         <Button htmlType="submit">생성하기</Button>
-                        <Button htmlType="reset">취소</Button>
+                        <Button htmlType="reset">리셋</Button>
                     </Form.Item>
                 </Form>
             </div>

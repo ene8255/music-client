@@ -13,7 +13,6 @@ const AlbumBlurBg = styled.div`
     width: 300px;
     height: 300px;
     background-image: url(${props => props.url});
-    background-color: red;
     filter: blur(20px);
     z-index: -1;
 `;

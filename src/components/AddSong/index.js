@@ -64,24 +64,30 @@ function AddPage() {
     }
 
     function onSubmit(values) {
-        axios.post(`${API_URL}/songs`, {
-            s_name: values.s_name,
-            s_artist: values.s_artist,
-            s_album: values.s_album,
-            s_year: values.s_year,
-            s_time: values.s_time,
-            s_imgUrl: imgUrl,
-            s_season: values.s_season,
-            s_mood: values.s_mood,
-            s_situation: values.s_situation,
-            s_youtubeUrl: youtubeUrl
-        }).then((result) => {
-            console.log(result);
-            navigate(-1);
-        })
-        .catch((error) => {
-            console.error(error);
-        })
+        if(!imgUrl) {
+            alert("사진 업로드를 해주세요!");
+        }else if(values.s_youtubeUrl.indexOf("youtube") === -1) {
+            alert("유튜브 동영상 url만 입력 가능합니다!");
+        }else {
+            axios.post(`${API_URL}/songs`, {
+                s_name: values.s_name,
+                s_artist: values.s_artist,
+                s_album: values.s_album,
+                s_year: values.s_year,
+                s_time: values.s_time,
+                s_imgUrl: imgUrl,
+                s_season: values.s_season,
+                s_mood: values.s_mood,
+                s_situation: values.s_situation,
+                s_youtubeUrl: youtubeUrl
+            }).then((result) => {
+                console.log(result);
+                navigate(-1);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+        }
     }
 
     return (
@@ -130,6 +136,7 @@ function AddPage() {
                     >
                         <Form.Item name="upload" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
                             <Upload name="image"
+                                accept="image/*"
                                 action={`${API_URL}/image`}
                                 listType="picture"
                                 showUploadList = {false}
@@ -169,7 +176,7 @@ function AddPage() {
                     <hr />
                     <Form.Item className="formItem btnArea">
                         <Button htmlType="submit">추가하기</Button>
-                        <Button htmlType="reset">취소</Button>
+                        <Button htmlType="reset">리셋</Button>
                     </Form.Item>
                 </Form>
             </div>
