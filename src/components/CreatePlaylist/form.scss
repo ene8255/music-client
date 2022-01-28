@@ -5,11 +5,12 @@
         margin-bottom: 40px;
     }
     .formDiv {
-        width: 60%;
+        width: 700px;
         margin: 0 auto;
         .formItem {
             display: flex;
-            margin: 16px;
+            padding-left: 24px;
+            margin: 24px;
             .form-label {
                 width: 200px;
                 display: flex;
@@ -23,18 +24,20 @@
         .btnArea {
             align-items: center;
             justify-content: center;
-            margin-top: 32px;
+            margin-top: 40px;
         }
     }
     button {
         padding: 8px 16px;
         border-radius: 5px;
-        margin-right: 40px;
         background-color: #fff;
         color: #111;
         border: 1px solid #fff;
         font-weight: bold;
         font-size: 14px;
+        &:nth-of-type(1) {
+            margin-right: 40px;
+        }
         &:hover {
             background-color: transparent;
             color: #fff;
@@ -108,5 +111,40 @@
     margin-top: 16px;
     input {
         width: 30px;
+    }
+}
+
+/* 1024px 이하일때 */
+@media screen and (max-width: 1024px) {
+    .formStyle {
+        .formDiv {
+            width: 90%;
+        }
+        input {
+            width: 35vw;
+        }
+        textarea {
+            width: 35vw;
+        }
+    }
+}
+
+/* 840px 이하일때 */
+@media screen and (max-width: 840px) {
+    .formStyle {
+        .formDiv {
+            .formItem {
+                padding: 0;
+                .form-label {
+                    width: 100px;
+                    margin-right: 24px;
+                    font-size: 16px;
+                }
+            }
+        }
+        .imgPreview {
+            width: 150px;
+            height: 150px;
+        }
     }
 }

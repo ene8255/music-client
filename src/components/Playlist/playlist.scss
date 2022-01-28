@@ -12,12 +12,14 @@
     }
     button {
         margin-top: 24px;
-        margin-right: 16px;
         padding: 5px 10px;
         background-color: #fff;
         border-radius: 5px;
         border: 1px solid #fff;
         font-weight: bold;
+        &:nth-of-type(1) {
+            margin-right: 16px;
+        }
         &:hover {
             background-color: transparent;
             color: #fff;
@@ -73,6 +75,36 @@
             }
             a {
                 text-decoration: underline;
+            }
+        }
+    }
+}
+
+/* 500px 이하일때 */
+@media screen and (max-width: 500px) {
+    #listSection {
+        height: auto;
+        flex-direction: column;
+    }
+    #listTitle {
+        margin: 3%;
+        h2 {
+            font-size: 56px;
+            margin: 0;
+        }
+    }
+    #playlistTable {
+        margin: 0 auto;
+        font-size: 10px;
+        th {
+            padding: 8px;
+        }
+        tbody {
+            tr {
+                svg {
+                    font-size: 16px;
+                    opacity: 1;
+                }
             }
         }
     }

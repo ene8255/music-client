@@ -21,19 +21,22 @@ header {
     background-color: #111;
     padding: 3%;
     z-index: 2;
-    font-size: 17px;
+    font-size: 1rem;
 }
-header ul {
+#toggle {
+    display: none;
+}
+#headerMenu ul {
     margin-top: 40px;
 }
-header ul li {
+#headerMenu ul li {
     margin: 16px 0;
 }
-header ul li a {
+#headerMenu ul li a {
     display: flex;
     align-items: center;
 }
-header svg {
+#headerMenu svg {
     font-size: 30px;
     margin-right: 16px;
 }
@@ -96,16 +99,17 @@ footer {
 #footerMenu-top {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 #footerMenu-top > ul {
     display: flex;
 }
 
-#menuLists > li {
+#menuLists > li:not(:last-child) {
     margin-right: 100px;
 }
 .submenu {
-    font-size: 18px;
+    font-size: 1rem;
     margin-top: 16px;
     color: #fff;
 }
@@ -119,6 +123,7 @@ footer {
 #socialIcons {
     font-size: 28px;
     color: #fff;
+    margin-top: 40px;
 }
 #socialIcons li {
     width: 60px;
@@ -146,3 +151,83 @@ footer {
     margin-right: 24px;
 }
 /* footer // */
+
+
+/* 1024px 이하일때 */
+@media screen and (max-width: 1024px) {
+    header {
+        font-size: 14px;
+    }
+}
+
+/* 840px 이하일때 */
+@media screen and (max-width: 840px) {
+    /* header */
+    header {
+        position: static;
+        max-height: 80px;
+        width: 100vw;
+        padding: 0 5%;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+    header.on {
+        max-height: 400px;
+        transition: 0.5s;
+    }
+    #mobileDiv {
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+    #toggle {
+        display: block;
+    }
+    #toggle svg {
+        font-size: 32px;
+    }
+    #headerMenu ul {
+        margin: 32px 24px;
+    }
+    /* header // */
+
+    /* nav */
+    #nav {
+        display: none;
+    }
+    /* nav // */
+
+    /* main */
+    main {
+        width: 100%;
+        margin-top: 0;
+        padding-top: 32px;
+    }
+    /* main // */
+
+    /* footer */
+    footer {
+        width: 100%;
+        padding: 5%;
+    }
+    #footerMenu-top > ul {
+        width: 100%;
+        justify-content: center;
+    }
+    /* footer // */
+}
+
+/* 500px 이하일때 */
+@media screen and (max-width: 500px) {
+    .submenu {
+        font-size: 14px;
+    }
+    #menuLists > li:not(:last-child) {
+        margin-right: 50px;
+    }
+    #footerMenu-bottom {
+        font-size: 10px;
+    }
+}
