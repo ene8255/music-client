@@ -57,7 +57,7 @@ function PlaylistPage() {
     }
 
     return (
-        <main>
+        <main id="playlistMain">
             <section id='listSection'>
                 <BlurBg img={`${API_URL}/${playlist[0].p_imgUrl}`} />
                 <div>

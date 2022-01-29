@@ -112,7 +112,7 @@ function EditSongPage() {
     }
 
     return (
-        <main className="formStyle">
+        <main className="formStyle songForm">
             <h2>노래 정보 수정하기</h2>
             <div className="formDiv">
                 <Form name="createForm" onFinish={onSubmit}

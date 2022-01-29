@@ -5,6 +5,7 @@
     position: relative;
     margin-bottom: 30px;
     z-index: 1;
+    animation: smoothAppear 1s;
     img {
         width: 250px;
         height: 250px;
@@ -39,6 +40,7 @@
 #playlistTable {
     width: 100%;
     text-align: left;
+    animation: smoothAppear 1s;
     th {
         border-bottom: 1px solid #fff;
         padding: 16px 8px;
@@ -80,8 +82,25 @@
     }
 }
 
+/* 840px 이하일때 */
+@media screen and (max-width: 840px) {
+    #playlistTable {
+        tbody {
+            tr {
+                svg {
+                    font-size: 16px;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
 /* 500px 이하일때 */
 @media screen and (max-width: 500px) {
+    #playlistMain {
+        padding: 10% 2%;
+    }
     #listSection {
         height: auto;
         flex-direction: column;
@@ -95,17 +114,9 @@
     }
     #playlistTable {
         margin: 0 auto;
-        font-size: 10px;
+        font-size: 11px;
         th {
             padding: 8px;
-        }
-        tbody {
-            tr {
-                svg {
-                    font-size: 16px;
-                    opacity: 1;
-                }
-            }
         }
     }
 }

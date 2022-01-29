@@ -1,9 +1,20 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 li { list-style: none; }
 a { text-decoration: none; color: inherit; }
-table { border-collapse: collapse; }
+table { border-collapse: collapse; border-spacing : 0; }
 input, textarea, select, button { outline: none; border: none; }
 button { cursor: pointer; }
+
+@keyframes smoothAppear {
+    from {
+      opacity: 0;
+      transform: translateY(+5%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
 
 .App {
     color: #fff;
@@ -173,7 +184,6 @@ footer {
     }
     header.on {
         max-height: 400px;
-        transition: 0.5s;
     }
     #mobileDiv {
         height: 80px;

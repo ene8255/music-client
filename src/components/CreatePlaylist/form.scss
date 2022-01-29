@@ -96,13 +96,10 @@
     }
 }
 
-#addMain {
+.songForm {
     #TagDesc {
         font-weight: normal;
         font-size: 14px;
-    }
-    strong {
-        margin-right: 16px;
     }
 }
 
@@ -127,17 +124,22 @@
             width: 35vw;
         }
     }
+    .originalImg {
+        input {
+            width: 30px;
+        }
+    }
 }
 
 /* 840px 이하일때 */
 @media screen and (max-width: 840px) {
     .formStyle {
         .formDiv {
+            width: 100%;
             .formItem {
-                padding: 0;
                 .form-label {
-                    width: 100px;
-                    margin-right: 24px;
+                    width: 150px;
+                    margin-right: 16px;
                     font-size: 16px;
                 }
             }
@@ -145,6 +147,47 @@
         .imgPreview {
             width: 150px;
             height: 150px;
+        }
+        input {
+            width: 50vw;
+        }
+        textarea {
+            width: 50vw;
+        }
+        select {
+            &:nth-of-type(1) {
+                margin-bottom: 16px;
+            }
+        }
+    }
+    .originalImg {
+        input {
+            width: 30px;
+        }
+    }
+}
+
+// 500px 이하일때 
+@media screen and (max-width: 500px) {
+    .formStyle {
+        .formDiv {
+            .formItem {
+                padding: 0;
+                .form-label {
+                    width: 100px;
+                }
+            }
+        }
+    }
+    .songForm {
+        .formItem {
+            margin: 12px;
+        }
+        select {
+            font-size: 13px;
+        } 
+        h4 {
+            margin-right: 8px;
         }
     }
 }

@@ -91,7 +91,7 @@ function AddPage() {
     }
 
     return (
-        <main className="formStyle" id="addMain">
+        <main className="formStyle songForm">
             <h2>노래 추가하기</h2>
             <div className="formDiv">
                 <Form name="createForm" onFinish={onSubmit}>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MdList, MdRecommend, MdSearch, MdAddBox, MdLibraryMusic, MdMenu, MdClose } from "react-icons/md";
 
 export default function Header(){
+    // 모바일 화면에서 메뉴 토글
     const [ on, setOn ] = useState(false);
 
     function onToggle() {
@@ -19,7 +20,7 @@ export default function Header(){
                     <span><MdClose /></span> */}
                 </div>
             </div>
-            <div id="headerMenu">
+            <div id="headerMenu" onClick={onToggle}>
                 <ul>
                     <li>
                         <Link to="/">
