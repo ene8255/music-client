@@ -25,7 +25,7 @@ function SongPage() {
     const param = useParams();
     const { id } = param;
 
-    // 불러온 id와 일치하는 노래 정보 가져오기
+    // 받아온 id와 일치하는 노래 정보 가져오기
     async function getSong() {
         const response = await axios.get(
             `${API_URL}/song/${id}`
@@ -41,11 +41,11 @@ function SongPage() {
     if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
     if(!song) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
-    // 카테고리 데이터는 따로 받아서 배열 생성
+    // 카테고리 데이터는 따로 받아서 새로운 배열 생성
     const s_categories = [];
     s_categories.push(song[0].s_season, song[0].s_mood, song[0].s_situation);
 
-    // 페이지 뒤로 가는 함수
+    // 페이지 뒤로 가기 함수
     function onBackward() {
         navigate(-1);
     }
@@ -73,7 +73,9 @@ function SongPage() {
                 </ul>
             </section>
             <section id='youtube'>
-                <iframe width="854" height="480" src={`https://www.youtube-nocookie.com/embed/${song[0].s_youtubeUrl}`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen ></iframe>
+                <iframe width="854" height="480" 
+                src={`https://www.youtube-nocookie.com/embed/${song[0].s_youtubeUrl}`} title="YouTube video player" frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen ></iframe>
             </section>
             <section id='btn'>
                 <Link to={`/editSong/${id}`}><button>수정하기</button></Link>

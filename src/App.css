@@ -1,10 +1,13 @@
+/* reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 li { list-style: none; }
 a { text-decoration: none; color: inherit; }
 table { border-collapse: collapse; border-spacing : 0; }
 input, textarea, select, button { outline: none; border: none; }
 button { cursor: pointer; }
+/* reset // */
 
+/* animation 정의 */
 @keyframes smoothAppear {
     from {
       opacity: 0;
@@ -166,6 +169,7 @@ footer {
 
 /* 1024px 이하일때 */
 @media screen and (max-width: 1024px) {
+    /* header */
     header {
         font-size: 14px;
     }
@@ -231,6 +235,7 @@ footer {
 
 /* 500px 이하일때 */
 @media screen and (max-width: 500px) {
+    /* footer */
     .submenu {
         font-size: 14px;
     }

@@ -13,11 +13,11 @@ export default function Header(){
     return (
         <header className={on? "on" : ""}>
             <div id="mobileDiv">
-                <h1><Link to="/">Music</Link></h1>
+                <h1>
+                    <Link to="/">Music</Link>
+                </h1>
                 <div id="toggle" onClick={onToggle} >
                     {on ? <MdClose /> : <MdMenu /> }
-                    {/* <span><MdMenu /></span>
-                    <span><MdClose /></span> */}
                 </div>
             </div>
             <div id="headerMenu" onClick={onToggle}>

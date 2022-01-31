@@ -7,7 +7,7 @@ import { API_URL } from '../../config/constants';
 import useAsync from '../../hooks/useAsync';
 
 function SearchPage() {
-    // search keyword가 바뀔때마다 상태 관리
+    // search input 값이 바뀔때마다 상태 관리
     const [ search, setSearch ] = useState(null);
 
     // 검색 결과 가져오기
@@ -52,19 +52,21 @@ function SearchPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* data가 있으면 데이터를 나타내고 아니면 아무것도 나타내지 않기 */}
+                        {/* data가 있으면 데이터를 나타내고 없으면 아무것도 나타내지 않기 */}
                         { data ?
-                        (
-                            data.map(item => (
-                                <tr key={item.s_id}>
-                                    <td className="imgTd"><img src={`${API_URL}/${item.s_imgUrl}`} alt="앨범 사진" /></td>
-                                    <td>
-                                        <p className="s_name"><Link to={`/song/${item.s_id}`}>{item.s_name}</Link></p>
-                                        <p className="s_artist">{item.s_artist}</p>
-                                    </td>
-                                    <td>{item.s_album}</td>
-                                </tr>
-                            ))
+                        (data.map(item => (
+                            <tr key={item.s_id}>
+                                <td className="imgTd">
+                                    <img src={`${API_URL}/${item.s_imgUrl}`} alt="앨범 사진" />
+                                </td>
+                                <td>
+                                    <p className="s_name">
+                                        <Link to={`/song/${item.s_id}`}>{item.s_name}</Link>
+                                    </p>
+                                    <p className="s_artist">{item.s_artist}</p>
+                                </td>
+                                <td>{item.s_album}</td>
+                            </tr>))
                         ) : 
                         null }
                     </tbody>

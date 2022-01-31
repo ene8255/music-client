@@ -4,14 +4,14 @@ import './random.scss';
 import CardSection from './CardSection';
 
 function RandomPage() {
+    // 곡 선택 input 값 상태 관리
     const [ songNum, setSongNum ] = useState(null);
 
+    // form submit하면 실행되는 함수
     function onSubmit(e) {
         e.preventDefault();
         let inputNum = e.target.inputNum.value;
         setSongNum(inputNum);
-        // if(inputNum === songNum) {
-        // }
     }
 
     return (

@@ -17,9 +17,11 @@ async function getCategories() {
 function EditSongPage() {
     const navigate = useNavigate();
 
+    // params id 받아오기
     const param = useParams();
     const { id } = param;
 
+    // 해당 id의 노래 정보 가져오기
     async function getSong() {
         const response = await axios.get(
             `${API_URL}/song/${id}`
@@ -51,6 +53,7 @@ function EditSongPage() {
     const stateSong = useAsync(getSong);
     const { loading: lSong, error: eSong, data: song } = stateSong;
     const { loading: lCat, error: eCat, data: categories } = stateCat;
+
     if(lSong || lCat) return <main><h3>로딩중...</h3></main>;
     if(eSong || eCat) return <main><h3>오류가 발생했습니다.</h3></main>;
     if(!song || !categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
@@ -75,15 +78,13 @@ function EditSongPage() {
         checked? setImgUrl(song[0].s_imgUrl) : setImgUrl(null);
     }
 
-    // youtubeUrl 초기 상태 지정
-    // setYoutubeUrl(song[0].s_youtubeUrl);
-
     // youtubeUrl 데이터 가공 + 상태 업데이트
     function onChangeYUrl(e) {
         const urlSplit = e.target.value.split('v=');
         setYoutubeUrl(urlSplit[1]);
     }
 
+    // form submit 하면 수행되는 함수
     function onSubmit(values) {
         if(!imgUrl) {
             alert("사진 업로드를 해주세요!");
@@ -167,7 +168,8 @@ function EditSongPage() {
                     <Form.Item className="formItem" 
                         label={<h3 className="form-label">앨범 사진</h3>}
                     >
-                        <Form.Item name="upload" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+                        <Form.Item name="upload" valuePropName="fileList" 
+                        getValueFromEvent={normFile} noStyle>
                             <Upload name="image"
                                 accept="image/*"
                                 action={`${API_URL}/image`}
@@ -192,7 +194,8 @@ function EditSongPage() {
                         label={<h3 className="form-label">태그 선택</h3>}
                     >
                         {groups.map((group, index) => (
-                            <Form.Item className="tagSelect" key={index} name={groups_name[index]} label={<h4>{group}</h4>}>
+                            <Form.Item className="tagSelect" key={index} 
+                            name={groups_name[index]} label={<h4>{group}</h4>}>
                             <select defaultValue="">
                                 <option value="">선택하기</option>
                                 {sortedCat[group].map(cat => (

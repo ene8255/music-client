@@ -46,6 +46,7 @@ function CreatePage() {
     // useAsync로 data 받아오는 상태 관리
     const state = useAsync(getCategories);
     const { loading, error, data: categories } = state;
+
     if(loading) return <main><h3>로딩중...</h3></main>;
     if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
     if(!categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
@@ -61,6 +62,7 @@ function CreatePage() {
         })
     })
 
+    // form submit 되면 실행되는 함수
     function onSubmit(values) {
         if(!imgUrl) {
             alert("사진 업로드를 해주세요!");
@@ -97,7 +99,8 @@ function CreatePage() {
                     <Form.Item className="formItem" 
                         label={<h3 className="form-label">플레이리스트 대표 사진</h3>}
                     >
-                        <Form.Item name="upload" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+                        <Form.Item name="upload" valuePropName="fileList" 
+                        getValueFromEvent={normFile} noStyle>
                             <Upload name="image"
                                 accept="image/*"
                                 action={`${API_URL}/image`}
@@ -143,8 +146,7 @@ function CreatePage() {
                                 (sortedCat[selectValue].map(cat => (
                                     <option key={cat} value={cat}>{cat}</option>
                                 ))) : 
-                                null
-                                }
+                                null}
                             </select>
                         </Form.Item>
                     </Form.Item>

@@ -10,9 +10,11 @@ const { TextArea } = Input;
 function EditPlaylistPage() {
     const navigate = useNavigate();
 
+    // params id 받아오기
     const param = useParams();
     const { id } = param;
 
+    // 해당 id의 플레이리스트 정보 가져오기
     async function getPlaylist() {
         const response = await axios.get(
             `${API_URL}/playlist/${id}`
@@ -40,6 +42,7 @@ function EditPlaylistPage() {
     // useAsync로 data 받아오는 상태 관리
     const state = useAsync(getPlaylist);
     const { loading, error, data: playlist } = state;
+
     if(loading) return <main><h3>로딩중...</h3></main>;
     if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
     if(!playlist) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
@@ -47,9 +50,10 @@ function EditPlaylistPage() {
     // 체크박스의 checked 속성이 true이면 원래 imgUrl 가져오기
     function onChangeCk(e) {
         const checked = e.target.checked;
-        checked? setImgUrl(playlist[0].p_imgUrl) : setImgUrl(null);
+        checked ? setImgUrl(playlist[0].p_imgUrl) : setImgUrl(null);
     }
 
+    // form submit 하면 실행되는 함수
     function onSubmit(values) {
         if(!imgUrl) {
             alert("사진 업로드를 해주세요!");
@@ -91,7 +95,8 @@ function EditPlaylistPage() {
                     <Form.Item className="formItem" 
                         label={<h3 className="form-label">플레이리스트 대표 사진</h3>}
                     >
-                        <Form.Item name="upload" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
+                        <Form.Item name="upload" valuePropName="fileList" 
+                        getValueFromEvent={normFile} noStyle>
                             <Upload name="image"
                                 accept="image/*"
                                 action={`${API_URL}/image`}
