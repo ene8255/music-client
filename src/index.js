@@ -8,7 +8,7 @@ import ScrollRestoration from './ScrollRestoration';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ScrollRestoration/>
       <App />
     </BrowserRouter>
