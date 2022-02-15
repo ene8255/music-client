@@ -19,7 +19,7 @@ function MainPage() {
     const state = useAsync(getPlaylists);
     const { loading, error, data: playlists } = state;
     
-    if(loading) return <main><h3>로딩중...</h3></main>;
+    if(loading) return <MainSkeleton />;
     if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
     if(!playlists) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
@@ -28,21 +28,20 @@ function MainPage() {
     const filteredGroups = groups.filter((item, index) => groups.indexOf(item) === index);
 
     return (
-        // <main>
-        //     {filteredGroups.map(group => (
-        //         <section className='mainSection' key={group}>
-        //             <h2>{group}에 맞는 플레이리스트</h2>
-        //             <ul>
-        //                 {playlists.map(item => 
-        //                     group === item.p_group ? 
-        //                     <MainList key={item.p_id} data={item} /> : 
-        //                     null
-        //                 )}
-        //             </ul>
-        //         </section>
-        //     ))}
-        // </main>
-        <MainSkeleton />
+        <main>
+            {filteredGroups.map(group => (
+                <section className='mainSection' key={group}>
+                    <h2>{group}에 맞는 플레이리스트</h2>
+                    <ul>
+                        {playlists.map(item => 
+                            group === item.p_group ? 
+                            <MainList key={item.p_id} data={item} /> : 
+                            null
+                        )}
+                    </ul>
+                </section>
+            ))}
+        </main>
     );
 }
 

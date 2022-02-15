@@ -1,4 +1,5 @@
 import React from 'react';
+import SkeletonList from './SkeletonList';
 import './skeleton.scss';
 
 function MainSkeleton() {
@@ -6,13 +7,24 @@ function MainSkeleton() {
         <main id="mainSkeleton">
             <div className='sGray'></div>
             <ul>
-                <li>
-                    <div className='sGray'></div>
-                    <div>
-                        <p className='sGray'></p>
-                        <p className='sGray'></p>
-                    </div>
-                </li>
+                <SkeletonList />
+                <SkeletonList />
+                <SkeletonList />
+                <SkeletonList />
+            </ul>
+            <div className='sGray'></div>
+            <ul>
+                <SkeletonList />
+                <SkeletonList />
+                <SkeletonList />
+                <SkeletonList />
+            </ul>
+            <div className='sGray'></div>
+            <ul>
+                <SkeletonList />
+                <SkeletonList />
+                <SkeletonList />
+                <SkeletonList />
             </ul>
         </main>
     );
