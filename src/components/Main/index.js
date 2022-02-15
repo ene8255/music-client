@@ -1,6 +1,7 @@
 import React from 'react';
 import './main.scss';
 import MainList from './MainList';
+import MainSkeleton from '../Skeletons/MainSkeleton';
 import axios from 'axios';
 import useAsync from '../../hooks/useAsync';
 import { API_URL } from '../../config/constants';
@@ -27,20 +28,21 @@ function MainPage() {
     const filteredGroups = groups.filter((item, index) => groups.indexOf(item) === index);
 
     return (
-        <main>
-            {filteredGroups.map(group => (
-                <section className='mainSection' key={group}>
-                    <h2>{group}에 맞는 플레이리스트</h2>
-                    <ul>
-                        {playlists.map(item => 
-                            group === item.p_group ? 
-                            <MainList key={item.p_id} data={item} /> : 
-                            null
-                        )}
-                    </ul>
-                </section>
-            ))}
-        </main>
+        // <main>
+        //     {filteredGroups.map(group => (
+        //         <section className='mainSection' key={group}>
+        //             <h2>{group}에 맞는 플레이리스트</h2>
+        //             <ul>
+        //                 {playlists.map(item => 
+        //                     group === item.p_group ? 
+        //                     <MainList key={item.p_id} data={item} /> : 
+        //                     null
+        //                 )}
+        //             </ul>
+        //         </section>
+        //     ))}
+        // </main>
+        <MainSkeleton />
     );
 }
 

@@ -1,0 +1,25 @@
+#mainSkeleton {
+    .sGray {
+        background-color: #494949;
+    }
+    > div {
+        height: 32px;
+        width: 300px;
+        margin-left: 40px;
+        margin-top: 24px;
+    }
+    > ul {
+        margin-left: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            background-color: #191919;
+            padding: 24px;
+            margin-right: 2%;
+            margin-bottom: 2%;
+            border-radius: 8px;
+            min-width: 215px;
+            width: 17%;
+        }
+    }
+}
