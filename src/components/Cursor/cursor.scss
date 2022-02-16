@@ -4,17 +4,25 @@
     left: 0;
     width: 24px;
     height: 24px;
-    background-color: #fff;
+    background: linear-gradient(to right, #c2e59c, #64b3f4);
+    // border: 2px solid #fff;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     z-index: 90;
     pointer-events: none;
     transition-duration: 100ms;
+    opacity: 0.8;
 }
 
 .cursor.hovered {
     width: 48px;
     height: 48px;
-    background-color: #fff;
-    opacity: 0.8;
+}
+
+
+/* 840px 이하일때 */
+@media screen and (max-width: 840px) {
+    .cursor {
+        display: none;
+    }
 }

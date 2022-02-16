@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { MouseContext } from '../../context/mouse-context';
 
 function Nav() {
-    const { cursorType, cursorChangeHandler } = useContext(MouseContext);
+    const { cursorChangeHandler } = useContext(MouseContext);
 
     const navigate = useNavigate();
 
@@ -20,14 +20,17 @@ function Nav() {
 
     return (
         <div id="nav">
-            <ul
-                onMouseEnter={() => cursorChangeHandler("hovered")}
-                onMouseLeave={() => cursorChangeHandler("")}
-            >
-                <li onClick={goBack}>
+            <ul>
+                <li onClick={goBack}
+                    onMouseEnter={() => cursorChangeHandler("hovered")}
+                    onMouseLeave={() => cursorChangeHandler("")}
+                >
                     <AiOutlineLeft/>
                 </li>
-                <li onClick={goForward}>
+                <li onClick={goForward}
+                    onMouseEnter={() => cursorChangeHandler("hovered")}
+                    onMouseLeave={() => cursorChangeHandler("")}
+                >
                     <AiOutlineRight/>
                 </li>
             </ul>

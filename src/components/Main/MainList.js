@@ -4,7 +4,7 @@ import { API_URL } from '../../config/constants';
 import { MouseContext } from '../../context/mouse-context';
 
 function MainList({ data }) {
-    const { cursorType, cursorChangeHandler } = useContext(MouseContext);
+    const { cursorChangeHandler } = useContext(MouseContext);
 
     const { p_id, p_name, p_imgUrl, p_desc } = data;
 

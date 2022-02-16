@@ -4,14 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import ScrollRestoration from './ScrollRestoration';
+import Restoration from './Restoration';
 import MouseContextProvider from './context/mouse-context';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <MouseContextProvider>
-        <ScrollRestoration/>
+        <Restoration/>
         <App />
       </MouseContextProvider>
     </BrowserRouter>

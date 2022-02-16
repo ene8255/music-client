@@ -4,7 +4,6 @@ li { list-style: none; }
 a { text-decoration: none; color: inherit; }
 table { border-collapse: collapse; border-spacing : 0; }
 input, textarea, select, button { outline: none; border: none; }
-button { cursor: pointer; }
 /* reset // */
 
 /* animation 정의 */
@@ -176,6 +175,7 @@ footer {
 
 /* 840px 이하일때 */
 @media screen and (max-width: 840px) {
+    * { cursor: default; }
     /* header */
     header {
         position: static;

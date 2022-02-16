@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BiTrash } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../config/constants';
 import useAsync from '../../hooks/useAsync';
 import PSkeletonTable from '../Skeletons/PSkeletonTable';
+import { MouseContext } from '../../context/mouse-context';
 
 function PlaylistTable({ p_category }) {
+    const { cursorChangeHandler } = useContext(MouseContext);
+
     let songNum = 1;
 
     async function getSongs() {
@@ -52,12 +55,23 @@ function PlaylistTable({ p_category }) {
                         <td>{songNum++}</td>
                         <td className='songTitle'>
                             <img src={`${API_URL}/${song.s_imgUrl}`} alt='앨범 이미지'/>
-                            <Link to={`/song/${song.s_id}`}>{song.s_name}</Link>
+                            <Link to={`/song/${song.s_id}`}
+                                onMouseEnter={() => cursorChangeHandler("hovered")}
+                                onMouseLeave={() => cursorChangeHandler("")}
+                            >
+                                {song.s_name}
+                            </Link>
                         </td>
                         <td>{song.s_artist}</td>
                         <td>{song.s_year}</td>
                         <td>{song.s_time}</td>
-                        <td><BiTrash onClick={() => window.confirm("노래를 삭제하시겠습니까?") ? onDelete(song.s_id) : null} /></td>
+                        <td onMouseEnter={() => cursorChangeHandler("hovered")}
+                            onMouseLeave={() => cursorChangeHandler("")}
+                        >
+                            <BiTrash 
+                                onClick={() => window.confirm("노래를 삭제하시겠습니까?") ? onDelete(song.s_id) : null}
+                            />
+                        </td>
                     </tr>
                 ))}
             </tbody>
