@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
+import { MouseContext } from '../../context/mouse-context';
 
 function Nav() {
+    const { cursorType, cursorChangeHandler } = useContext(MouseContext);
+
     const navigate = useNavigate();
 
     // 페이지 뒤로 가기
@@ -17,9 +20,16 @@ function Nav() {
 
     return (
         <div id="nav">
-            <ul>
-                <li onClick={goBack}><AiOutlineLeft/></li>
-                <li onClick={goForward}><AiOutlineRight/></li>
+            <ul
+                onMouseEnter={() => cursorChangeHandler("hovered")}
+                onMouseLeave={() => cursorChangeHandler("")}
+            >
+                <li onClick={goBack}>
+                    <AiOutlineLeft/>
+                </li>
+                <li onClick={goForward}>
+                    <AiOutlineRight/>
+                </li>
             </ul>
         </div>
     );

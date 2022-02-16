@@ -1,5 +1,5 @@
 /* reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 li { list-style: none; }
 a { text-decoration: none; color: inherit; }
 table { border-collapse: collapse; border-spacing : 0; }
@@ -81,7 +81,6 @@ header {
     align-items: center;
     margin-right: 16px;
     border-radius: 50%;
-    cursor: pointer;
 }
 #nav svg {
     font-size: 20px;

@@ -1,4 +1,5 @@
 import './App.css';
+import Cursor from './components/Cursor/Cursor';
 import Header from './components/include/Header';
 import Nav from './components/include/Nav';
 import MainPage from './components/Main';
@@ -16,6 +17,7 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
+      <Cursor />
       <Header />
       <Nav />
       <Routes>
