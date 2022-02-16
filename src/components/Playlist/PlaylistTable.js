@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BiTrash } from "react-icons/bi";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../config/constants';
 import useAsync from '../../hooks/useAsync';
+import PSkeletonTable from '../Skeletons/PSkeletonTable';
 
 function PlaylistTable({ p_category }) {
     let songNum = 1;
@@ -17,7 +18,7 @@ function PlaylistTable({ p_category }) {
 
     const state = useAsync(getSongs);
     const { loading, error, data:songs } = state;
-    if(loading) return <div>로딩중...</div>;
+    if(loading) return <PSkeletonTable />;
     if(error) return <div>오류가 발생했습니다.</div>;
     if(!songs) return <div>데이터를 불러오지 못했습니다.</div>;
 

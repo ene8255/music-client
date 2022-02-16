@@ -7,13 +7,21 @@
     }
 }
 
-#mainSkeleton {
-    .sGray {
-        background-color: #292929;
-        position: relative;
-        overflow: hidden;
-        animation: loading 2s infinite;
+.sGray {
+    background-color: #292929;
+    overflow: hidden;
+    animation: loading 2s infinite;
+}
+
+.sImg {
+    &::after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
     }
+}
+
+#mainSkeleton {
     > div {
         height: 32px;
         width: 300px;
@@ -36,11 +44,6 @@
             .sImg {
                 width: 100%;
                 min-width: 167px;
-                &::after {
-                    content: "";
-                    display: block;
-                    padding-bottom: 100%;
-                }
             }
             .sName {
                 width: 80px;
@@ -50,6 +53,162 @@
             .sDesc {
                 width: 100%;
                 height: 40px;
+            }
+        }
+    }
+}
+
+
+#playlistSkeleton {
+    #sList {
+        height: 280px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        .sImg {
+            width: 250px;
+            height: 250px;
+        }
+        .sTitle {
+            margin-left: 3%;
+            width: 50%;
+            > p {
+                margin-bottom: 24px;
+                &:first-of-type {
+                    width: 64px;
+                    height: 24px;
+                }
+                &:nth-of-type(2) {
+                    width: 100%;
+                    max-width: 300px;
+                    height: 80px;
+                }
+                &:nth-of-type(3) {
+                    width: 100%;
+                    max-width: 350px;
+                    height: 32px;
+                }
+            }
+        }
+    }
+    #sTable {
+        width: 100%;
+        span {
+            display: block;
+            width: 50%;
+            min-width: 64px;
+            height: 24px;
+        }
+        th {
+            border-bottom: 1px solid #fff;
+            padding: 16px 8px;
+            &:first-of-type {
+                width: 4%;
+                span {
+                    min-width: 20px;
+                }
+            }
+            &:nth-of-type(2) {
+                width: 43%;
+                span {
+                    width: 20%;
+                }
+            }
+            &:nth-of-type(3) {
+                width: 32%;
+                span {
+                    width: 20%;
+                }
+            }
+            &:last-of-type {
+                width: 12%;
+            }
+        }
+        tr {
+            td {
+                padding: 8px;
+                &:first-of-type {
+                    span {
+                        min-width: 20px;
+                    }
+                }
+                &:nth-of-type(2) {
+                    display: flex;
+                    align-items: center;
+                    .sImg {
+                        width: 50px;
+                        margin-right: 16px;
+                    }
+                    span {
+                        width: 50%;
+                        max-width: 200px;
+                    }
+                }
+                &:nth-of-type(3) {
+                    span {
+                        width: 60%;
+                        max-width: 200px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// 1024px 이하일때
+@media screen and (max-width: 1024px) {
+    #mainSkeleton {
+        > div {
+            margin: 24px auto; 
+        }
+        > ul {
+            margin-left: 0;
+            justify-content: center;
+            li {
+                margin-right: 5%;
+                margin-bottom: 5%;
+            }
+        }
+    }
+}
+
+/* 500px 이하일때 */
+@media screen and (max-width: 500px) {
+    #mainSkeleton {
+        > div {
+            width: 80%;
+        }
+    }
+    #playlistSkeleton {
+        padding: 10% 2%;
+        #sList {
+            height: auto;
+            flex-direction: column;
+            .sTitle {
+                margin: 3%;
+                > p {
+                    margin-bottom: 16px;
+                    &:nth-of-type(2) {
+                        height: 70px;
+                    }
+                    &:nth-of-type(3) {
+                        height: 24px;
+                    }
+                }
+            }
+        }
+        #sTable {
+            margin: 0 auto;
+            span {
+                min-width: 35px;
+                height: 16px;
+            }
+            th {
+                padding: 8px;
+                &:nth-of-type(4) {
+                    width: 10%;
+                }
             }
         }
     }

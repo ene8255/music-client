@@ -6,6 +6,7 @@ import { API_URL } from '../../config/constants';
 import useAsync from '../../hooks/useAsync';
 import PlaylistTable from './PlaylistTable';
 import ListSection from './ListSection';
+import PlaylistSkeleton from '../Skeletons/PlaylistSkeleton';
 
 function PlaylistPage() {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ function PlaylistPage() {
     const state = useAsync(getPlaylist);
     const { loading, error, data: playlist } = state;
     
-    if(loading) return <main><h3>로딩중...</h3></main>;
+    if(loading) return <PlaylistSkeleton />;
     if(error) return <main><h3>오류가 발생했습니다.</h3></main>;
     if(!playlist) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
