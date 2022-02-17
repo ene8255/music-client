@@ -176,6 +176,9 @@ footer {
 /* 840px 이하일때 */
 @media screen and (max-width: 840px) {
     * { cursor: default; }
+    button { cursor: pointer; }
+    a { cursor: pointer; }
+
     /* header */
     header {
         position: static;
