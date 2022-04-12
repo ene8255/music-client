@@ -15,7 +15,7 @@ function MainList({ data }) {
                 onMouseLeave={() => cursorChangeHandler("")}
             >
                 <div>
-                    <img src={`${API_URL}/${p_imgUrl}`}/>
+                    <img src={`${API_URL}/${p_imgUrl}`} alt='playlist' />
                 </div>
                 <h3>{p_name}</h3>
                 <p>{p_desc}</p>
