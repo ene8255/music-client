@@ -54,7 +54,7 @@ function PlaylistTable({ p_category }) {
                     <tr key={song.s_id}>
                         <td>{songNum++}</td>
                         <td className='songTitle'>
-                            <img src={`${API_URL}/${song.s_imgUrl}`} alt='앨범 이미지'/>
+                            <img src={`${song.s_imgUrl}`} alt='앨범 이미지'/>
                             <Link to={`/song/${song.s_id}`}
                                 onMouseEnter={() => cursorChangeHandler("hovered")}
                                 onMouseLeave={() => cursorChangeHandler("")}

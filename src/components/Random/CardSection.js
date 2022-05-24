@@ -60,7 +60,7 @@ function CardSection({ songNum, setSongNum }) {
                     <div className="song-card" key={index}>
                         <Link to={`/song/${item.s_id}`}>
                             <div className="card-img">
-                                <img src={`${API_URL}/${item.s_imgUrl}`} alt="앨범 사진" />
+                                <img src={`${item.s_imgUrl}`} alt="앨범 사진" />
                             </div>
                             <div className="card-text">
                                 <h3>{name[index]}</h3>

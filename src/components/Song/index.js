@@ -54,7 +54,7 @@ function SongPage() {
         <main id='songMain'>
             <section>
                 <div id='albumImg'>
-                    <img src={`${API_URL}/${song[0].s_imgUrl}`} alt='앨범 사진'/>
+                    <img src={`${song[0].s_imgUrl}`} alt='앨범 사진'/>
                     <AlbumBlurBg url={`${API_URL}/${song[0].s_imgUrl}`} />
                 </div>
             </section>

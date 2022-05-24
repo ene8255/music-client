@@ -57,7 +57,7 @@ function SearchPage() {
                         (data.map(item => (
                             <tr key={item.s_id}>
                                 <td className="imgTd">
-                                    <img src={`${API_URL}/${item.s_imgUrl}`} alt="앨범 사진" />
+                                    <img src={`${item.s_imgUrl}`} alt="앨범 사진" />
                                 </td>
                                 <td>
                                     <p className="s_name">

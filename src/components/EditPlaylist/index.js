@@ -112,7 +112,7 @@ function EditPlaylistPage() {
                         </div>
                         <div className="imgPreview">
                             {imgUrl ? 
-                            (<img src={`${API_URL}/${imgUrl}`} alt="앨범 사진"/>) : 
+                            (<img src={`${imgUrl}`} alt="앨범 사진"/>) : 
                             (<p>이미지 미리보기</p>)}
                         </div>
                     </Form.Item>

@@ -27,9 +27,9 @@ function ListSection({ playlist, onDelete }) {
 
     return (
         <section id="listSection">
-            <BlurBg img={`${API_URL}/${playlist[0].p_imgUrl}`} />
+            <BlurBg img={`${playlist[0].p_imgUrl}`} />
             <div>
-                <img src={`${API_URL}/${playlist[0].p_imgUrl}`} alt="플레이리스트 사진" />
+                <img src={`${playlist[0].p_imgUrl}`} alt="플레이리스트 사진" />
             </div>
             <div id="listTitle">
                 <p>PLAYLIST</p>
