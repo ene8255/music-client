@@ -9,7 +9,7 @@ import useAsync from '../../hooks/useAsync';
 function SearchPage() {
     // sessionStorage에 저장된 search 값을 가져옴
     // 페이지를 새로고침하거나 뒤로가기로 다시 돌아와도 검색값이 그대로 남아 있도록 하기 위한 목적
-    const sessionSearch = JSON.parse(window.sessionStorage.getItem("search"));
+    const sessionSearch = window.sessionStorage.getItem("search");
 
     // search input 값이 바뀔때마다 상태 관리
     const [ search, setSearch ] = useState(sessionSearch || "");
@@ -43,7 +43,7 @@ function SearchPage() {
 
     // search 값이 바뀔 때마다 sessionStorage의 값도 변경하기
     useEffect(() => {
-        window.sessionStorage.setItem("search", JSON.stringify(search));
+        window.sessionStorage.setItem("search", search);
     }, [search]);
 
     return (
