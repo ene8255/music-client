@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { API_URL } from '../../config/constants';
 import { MouseContext } from '../../context/mouse-context';
 
 function MainList({ data }) {

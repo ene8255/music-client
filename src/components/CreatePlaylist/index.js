@@ -52,7 +52,7 @@ function CreatePage() {
     if(!categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
     // 가져온 data 가공하기
-    const sortedCat = new Object();
+    const sortedCat = {};
     categories[0].map(group => {
         categories[1].map(category => {
             if(group.c_group === category.c_group) {

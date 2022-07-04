@@ -4,7 +4,7 @@ import { MdList, MdRecommend, MdSearch, MdAddBox, MdLibraryMusic, MdMenu, MdClos
 import { MouseContext } from '../../context/mouse-context';
 
 export default function Header(){
-    const { cursorType, cursorChangeHandler } = useContext(MouseContext);
+    const { cursorChangeHandler } = useContext(MouseContext);
 
     // 모바일 화면에서 메뉴 토글
     const [ on, setOn ] = useState(false);

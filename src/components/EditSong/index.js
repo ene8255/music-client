@@ -59,8 +59,8 @@ function EditSongPage() {
     if(!song || !categories) return <main><h3>데이터를 불러오지 못했습니다.</h3></main>;
 
     // 가져온 data 가공하기
-    const groups = new Array();
-    const sortedCat = new Object();
+    const groups = [];
+    const sortedCat = {};
     categories[0].map(group => {
         groups.push(group.c_group);
         categories[1].map(category => {

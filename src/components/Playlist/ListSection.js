@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { API_URL } from '../../config/constants';
 import { Link } from 'react-router-dom';
 
 // blur 배경은 styled component로 생성하여 이미지 url을 props로 받음
