@@ -179,6 +179,17 @@
         > div {
             width: 80%;
         }
+        > ul {
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            li {
+                min-width: 168px;
+                margin-right: 10px;
+                .sImg {
+                    min-width: 120px;
+                }
+            }
+        }
     }
     #playlistSkeleton {
         padding: 10% 2%;

@@ -27,10 +27,15 @@ function MainPage() {
     function onTouchEnd(e) {
         const distanceX = touchX - e.changedTouches[0].pageX;
         const targetUl = e.target.closest('ul');
+        const targetUlWidth = targetUl.offsetWidth / 2;
         const newLeft = Math.abs(parseFloat(targetUl.style.left)) + distanceX;
 
-        if(newLeft < 450) {
+        if(newLeft < 0) {
+            targetUl.style.left = '0px';
+        }else if(newLeft < targetUlWidth) {
             targetUl.style.left = `-${newLeft}px`;
+        }else {
+            targetUl.style.left = `-${targetUlWidth}px`;
         }
     }
 
