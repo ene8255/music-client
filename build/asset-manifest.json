@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/music-client/static/css/main.32dad05d.css",
-    "main.js": "/music-client/static/js/main.ed68a7f2.js",
+    "main.js": "/music-client/static/js/main.6b5d7a31.js",
     "static/js/787.58fa603d.chunk.js": "/music-client/static/js/787.58fa603d.chunk.js",
     "static/media/SCDream2.otf": "/music-client/static/media/SCDream2.f44c037d461a68f92e1e.otf",
     "static/media/SCDream3.otf": "/music-client/static/media/SCDream3.1e55b77199a0afd0ed9a.otf",
@@ -9,11 +9,11 @@
     "static/media/SCDream4.otf": "/music-client/static/media/SCDream4.64c9dc7c860af7a004ad.otf",
     "index.html": "/music-client/index.html",
     "main.32dad05d.css.map": "/music-client/static/css/main.32dad05d.css.map",
-    "main.ed68a7f2.js.map": "/music-client/static/js/main.ed68a7f2.js.map",
+    "main.6b5d7a31.js.map": "/music-client/static/js/main.6b5d7a31.js.map",
     "787.58fa603d.chunk.js.map": "/music-client/static/js/787.58fa603d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.32dad05d.css",
-    "static/js/main.ed68a7f2.js"
+    "static/js/main.6b5d7a31.js"
   ]
 }
