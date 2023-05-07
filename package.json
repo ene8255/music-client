@@ -5,16 +5,16 @@
   "homepage": "https://ene8255.github.io/music-client",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "antd": "^5.0.4",
-    "axios": "^1.2.0",
+    "antd": "^5.4.7",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.7.1",
-    "react-router-dom": "^6.4.4",
-    "styled-components": "^5.3.6",
-    "web-vitals": "^3.1.0"
+    "react-icons": "^4.8.0",
+    "react-router-dom": "^6.11.1",
+    "styled-components": "^5.3.10",
+    "web-vitals": "^3.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -43,12 +43,12 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
+    "gh-pages": "^5.0.0",
     "less": "^4.1.3",
     "less-loader": "^11.1.0",
-    "mini-css-extract-plugin": "^2.7.1",
+    "mini-css-extract-plugin": "^2.7.5",
     "react-scripts": "5.0.1",
-    "sass": "^1.56.1",
-    "sass-loader": "^13.2.0"
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2"
   }
 }
